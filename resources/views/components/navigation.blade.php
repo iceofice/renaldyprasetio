@@ -11,11 +11,11 @@
         </li>
         <li @class([
             'nav-item',
-            'active' => Route::currentRouteName() == 'admin.users.index',
+            'active' => Route::currentRouteName() == 'admin.projects.index',
         ])>
-            <a class="nav-link" href="{{ route('admin.users.index') }}">
-                <i class="mdi mdi-account-outline menu-icon"></i>
-                <span class="menu-title">Users</span>
+            <a class="nav-link" href="{{ route('admin.projects.index') }}">
+                <i class="mdi mdi-view-module menu-icon"></i>
+                <span class="menu-title">Projects</span>
             </a>
         </li>
     </ul>
