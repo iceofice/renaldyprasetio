@@ -28,4 +28,10 @@
             </div>
         </div>
     </div>
+
+    <x-slot name="scripts">
+        @if (isset($scripts))
+            {{ $scripts }}
+        @endif
+    </x-slot>
 </x-admin>

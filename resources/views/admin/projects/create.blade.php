@@ -1,72 +1,45 @@
-<x-admin>
-    <div class="row">
-        <div class="col-12 col-xl-8 mb-4 mb-xl-2">
-            <h3 class="font-weight-bold">Add Project</h3>
+<x-crud.create>
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" placeholder="Title" name="title" id="title"
+            value="{{ old('title') }}">
+    </div>
+    <div class="form-group">
+        <label for="categories">Categories</label>
+        <select name="categories[]" id="categories" class="js-categories-select w-100" multiple>
+            @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->title }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="technologies">Technologies</label>
+        <select name="technologies[]" id="technologies" class="js-technologies-select w-100" multiple>
+            @foreach ($technologies as $technology)
+                <option value="{{ $technology->id }}">{{ $technology->name }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="form-group">
+        <label>File upload</label>
+        <div class="owl-carousel gallery"></div>
+        <input accept="image/*" type="file" name="image[]" class="file-upload-default" multiple>
+        <div class="input-group col-xs-12">
+            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+            <span class="input-group-append">
+                <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+            </span>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul class="mb-0">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    <form class="forms-sample" action="{{ route('admin.projects.store') }}" method="POST"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-group">
-                            <label for="title">Title</label>
-                            <input type="text" class="form-control" placeholder="Title" name="title"
-                                id="title">
-                        </div>
-                        <div class="form-group">
-                            <label for="categories">Categories</label>
-                            <select name="categories[]" id="categories" class="js-categories-select w-100" multiple>
-                                <option value="AL">Alabama</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>File upload</label>
-                            <div class="owl-carousel gallery mb-4">
-                            </div>
-                            <input accept="image/*" type="file" name="img[]" class="file-upload-default" multiple>
-                            <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled
-                                    placeholder="Upload Image">
-                                <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="about">About</label>
-                            <textarea class="form-control" name="about" id="about" rows="4"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="contributions">Contributions</label>
-                            <textarea class="form-control" name="contributions" id="contributions" rows="4"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="technologies">Technologies</label>
-                            <select name="technologies[]" id="technologies" class="js-technologies-select w-100"
-                                multiple>
-                                <option value="AL">Alabama</option>
-                            </select>
-                        </div>
+    <div class="form-group">
+        <label for="about">About</label>
+        <textarea class="form-control" name="about" id="about" rows="4">{{ old('about') }}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="contributions">Contributions</label>
+        <textarea class="form-control" name="contributions" id="contributions" rows="4">{{ old('contributions') }}</textarea>
+    </div>
 
-                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                        <button class="btn btn-light">Cancel</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
     <x-slot name="scripts">
         <script>
             (function($) {
@@ -119,19 +92,31 @@
                                     ['<div class="item"><img src="' + event.target.result + '" /></div>'])
                                 .trigger('refresh.owl.carousel')
                         }
-
                         reader.readAsDataURL(input.files[i]);
                     }
                 });
 
                 // Select 2
-                if ($(".js-categories-select").length) {
-                    $(".js-categories-select").select2();
-                }
-                if ($(".js-technologies-select").length) {
-                    $(".js-technologies-select").select2();
-                }
+                $(".js-categories-select").select2();
+                $(".js-categories-select").val(@json(old('categories')));
+                $(".js-categories-select").trigger('change');
+
+                $(".js-technologies-select").select2();
+                $(".js-technologies-select").val(@json(old('technologies')));
+                $(".js-technologies-select").trigger('change');
+
+                //WYSISYG Editor
+                tinymce.init({
+                    selector: 'textarea#contributions', // Replace this CSS selector to match the placeholder element for TinyMCE
+                    plugins: 'code',
+                    height: 200,
+                });
+                tinymce.init({
+                    selector: 'textarea#about', // Replace this CSS selector to match the placeholder element for TinyMCE
+                    plugins: 'code',
+                    height: 200,
+                });
             })(jQuery);
         </script>
     </x-slot>
-</x-admin>
+</x-crud.create>

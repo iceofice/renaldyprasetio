@@ -10,6 +10,17 @@ class Project extends Model
     use HasFactory;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'title',
+        'about',
+        'contributions'
+    ];
+
+    /**
      * Validation Rules
      *
      * @var array
@@ -18,10 +29,10 @@ class Project extends Model
         'title'             => 'required',
         'categories'        => 'array',
         'categories.*'      => 'exists:categories,id',
-        'img'               => 'array',
-        'img.*'             => 'image',
-        'about'             => 'nullable|string',
-        'contribution'      => 'nullable|string',
+        'image'             => 'array',
+        'image.*'           => 'image',
+        'about'             => 'required',
+        'contributions'     => 'required',
         'technologies'      => 'array',
         'technologies.*'    => 'exists:technologies,id',
     ];
@@ -35,4 +46,20 @@ class Project extends Model
         'categories.*'      => 'The selected categories are invalid.',
         'technologies.*'    => 'The selected technologies are invalid.',
     ];
+
+    /**
+     * The categories that belong to the project.
+     */
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
+    /**
+     * The categories that belong to the project.
+     */
+    public function tecnologies()
+    {
+        return $this->belongsToMany(Technologies::class);
+    }
 }

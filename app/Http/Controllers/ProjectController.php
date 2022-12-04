@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Project;
+use App\Models\Technology;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class ProjectController extends Controller
 {
+    public function __construct()
+    {
+        View::share('modelName', 'Project');
+        View::share('routeName', 'projects');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +23,17 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-        return view('admin.projects.index', compact('projects'));
+        $columns = [
+            [
+                'title' => 'ID',
+                'data'  => 'id'
+            ],
+            [
+                'title' => 'Title',
+                'data'  => 'title'
+            ],
+        ];
+        return view('admin.projects.index', compact('projects', 'columns'));
     }
 
     /**
@@ -25,7 +43,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $categories = Category::get(['id', 'title']);
+        $technologies = Technology::get(['id', 'name']);
+        return view('admin.projects.create', compact('categories', 'technologies'));
     }
 
     /**
@@ -36,18 +56,18 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(Project::$rules, Project::$messages);
-    }
+        $validated = $request->validate(Project::$rules, Project::$messages);
+        $project = Project::create($validated);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Project $project)
-    {
-        //
+
+        if (isset($validated['categories']))
+            $project->categories()->attach($validated['categories']);
+
+        if (isset($validated['technologies']))
+            $project->technologies()->attach($validated['technologies']);
+
+        return redirect()->route('admin.projects.index')
+            ->with('success_message', 'Project added successfully');
     }
 
     /**
@@ -81,6 +101,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+
+        return redirect()->route('admin.projects.index')
+            ->with('success_message', 'Project deleted successfully');
     }
 }

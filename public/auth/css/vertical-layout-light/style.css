@@ -30603,6 +30603,7 @@ div.tagsinput span.tag a {
 .owl-carousel .item {
   height: 100%;
   max-height: 400px;
+  padding-bottom: 1.5rem;
 }
 
 .owl-carousel .item img{

@@ -103,6 +103,7 @@
     <script src="{{ asset('auth/vendors/select2/select2.min.js') }}"></script>
     <script src="{{ asset('auth/vendors/owl-carousel-2/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('auth/vendors/jquery-toast-plugin/jquery.toast.js') }}"></script>
+    <script src="{{ asset('auth/vendors/tinymce/tinymce.min.js') }}"></script>
 
     <!-- endinject -->
     <!-- Custom js for this page-->
