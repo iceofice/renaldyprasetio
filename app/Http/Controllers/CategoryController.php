@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        View::share('modelName', 'Category');
+        View::share('routeName', 'categories');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +21,17 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('admin.categories.index', compact('categories'));
+        $columns = [
+            [
+                'title' => 'ID',
+                'data'  => 'id'
+            ],
+            [
+                'title' => 'Title',
+                'data'  => 'title'
+            ],
+        ];
+        return view('admin.categories.index', compact('categories', 'columns'));
     }
 
     /**
@@ -41,7 +57,7 @@ class CategoryController extends Controller
         Category::create($validated);
 
         return redirect()->route('admin.categories.index')
-            ->with('success_message', 'Categories added successfully');
+            ->with('success_message', 'Category added successfully');
     }
 
     /**
@@ -69,7 +85,7 @@ class CategoryController extends Controller
         $category->update($validated);
 
         return redirect()->route('admin.categories.index')
-            ->with('success_message', 'Categories updated successfully');
+            ->with('success_message', 'Category updated successfully');
     }
 
     /**
@@ -83,6 +99,6 @@ class CategoryController extends Controller
         $category->delete();
 
         return redirect()->route('admin.categories.index')
-            ->with('success_message', 'Categories deleted successfully');
+            ->with('success_message', 'Category deleted successfully');
     }
 }

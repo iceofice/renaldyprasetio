@@ -8,4 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Technology extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+    ];
+
+    /**
+     * Validation Rules
+     *
+     * @var array
+     */
+    public static $rules = [
+        'name' => 'required',
+    ];
 }

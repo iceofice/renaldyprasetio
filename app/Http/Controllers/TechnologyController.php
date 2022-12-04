@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Technology;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class TechnologyController extends Controller
 {
+    public function __construct()
+    {
+        View::share('modelName', 'Technology');
+        View::share('routeName', 'technologies');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +21,17 @@ class TechnologyController extends Controller
     public function index()
     {
         $technologies = Technology::all();
-        return view('admin.technologies.index', compact('technologies'));
+        $columns = [
+            [
+                'title' => 'ID',
+                'data'  => 'id'
+            ],
+            [
+                'title' => 'Name',
+                'data'  => 'name'
+            ],
+        ];
+        return view('admin.technologies.index', compact('technologies', 'columns'));
     }
 
     /**
@@ -41,7 +57,7 @@ class TechnologyController extends Controller
         Technology::create($validated);
 
         return redirect()->route('admin.technologies.index')
-            ->with('success_message', 'Technologies added successfully');
+            ->with('success_message', 'Technology added successfully');
     }
 
     /**
@@ -69,7 +85,7 @@ class TechnologyController extends Controller
         $technology->update($validated);
 
         return redirect()->route('admin.technologies.index')
-            ->with('success_message', 'Technologies updated successfully');
+            ->with('success_message', 'Technology updated successfully');
     }
 
     /**
@@ -83,6 +99,6 @@ class TechnologyController extends Controller
         $technology->delete();
 
         return redirect()->route('admin.technologies.index')
-            ->with('success_message', 'Technologies deleted successfully');
+            ->with('success_message', 'Technology deleted successfully');
     }
 }
