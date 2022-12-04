@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="{{ asset('auth/vendors/ti-icons/css/themify-icons.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('auth/js/select.dataTables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('auth/vendors/mdi/css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('auth/vendors/select2/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('auth/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('auth/vendors/owl-carousel-2/owl.carousel.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('auth/vendors/jquery-toast-plugin/jquery.toast.css') }}" />
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('auth/css/vertical-layout-light/style.css') }}">
@@ -96,6 +100,10 @@
     <script src="{{ asset('auth/js/template.js') }}"></script>
     <script src="{{ asset('auth/js/settings.js') }}"></script>
     <script src="{{ asset('auth/js/todolist.js') }}"></script>
+    <script src="{{ asset('auth/vendors/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('auth/vendors/owl-carousel-2/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('auth/vendors/jquery-toast-plugin/jquery.toast.js') }}"></script>
+
     <!-- endinject -->
     <!-- Custom js for this page-->
     <script src="{{ asset('auth/js/Chart.roundedBarCharts.js') }}"></script>

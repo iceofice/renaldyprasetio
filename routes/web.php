@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TechnologyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +22,7 @@ Route::get('/', function () {
 });
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', [AuthController::class, 'authenticate'])->name('authenticate');;
+Route::post('/login', [AuthController::class, 'authenticate'])->name('authenticate');
 
 Route::group([
     'middleware'    => 'auth:web',
@@ -31,5 +33,7 @@ Route::group([
         return view('admin');
     })->name('home');
 
-    Route::resource('/projects', ProjectController::class );
+    Route::resource('/projects', ProjectController::class);
+    Route::resource('/categories', CategoryController::class);
+    Route::resource('/technologies', TechnologyController::class);
 });
