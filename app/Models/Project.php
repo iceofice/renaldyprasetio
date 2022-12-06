@@ -58,8 +58,16 @@ class Project extends Model
     /**
      * The categories that belong to the project.
      */
-    public function tecnologies()
+    public function technologies()
     {
-        return $this->belongsToMany(Technologies::class);
+        return $this->belongsToMany(Technology::class);
+    }
+
+    /**
+     * Get the images for the project.
+     */
+    public function images()
+    {
+        return $this->hasMany(Image::class);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Project;
 use App\Models\Technology;
 use Illuminate\Http\Request;
@@ -57,8 +58,21 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate(Project::$rules, Project::$messages);
+
         $project = Project::create($validated);
 
+        if (isset($validated['image'])) {
+            foreach ($validated['image'] as $image) {
+                $imageTitle = $image->hashName();
+                $image->move(public_path('uploaded'), $imageTitle);
+
+                $images[] = Image::create([
+                    'url' => 'uploaded/' . $imageTitle,
+                    'project_id' => $project->id
+                ]);
+            }
+            $project->images()->saveMany($images);
+        }
 
         if (isset($validated['categories']))
             $project->categories()->attach($validated['categories']);
