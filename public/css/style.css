@@ -3316,11 +3316,6 @@ h6 {
 .single_portfolio .icon span {
     font-size: 100px;
     display: inline-block;
-    -webkit-transform: rotate(135deg);
-    -moz-transform: rotate(135deg);
-    -ms-transform: rotate(135deg);
-    -o-transform: rotate(135deg);
-    transform: rotate(135deg);
     color: #ffffff;
     cursor: pointer;
 }
@@ -3384,11 +3379,11 @@ h6 {
 ============================================================================================ */
 /* Start Testimonial Area css
 ============================================================================================ */
-.testimonial_area .owl-carousel .owl-dots {
+.owl-carousel .owl-dots {
     display: block !important;
     text-align: center;
 }
-.testimonial_area .owl-carousel .owl-dots .owl-dot {
+.owl-carousel .owl-dots .owl-dot {
     height: 10px;
     width: 10px;
     background: #d8d8d8;
@@ -3400,7 +3395,7 @@ h6 {
     -o-transition: all 0.4s ease 0s;
     transition: all 0.4s ease 0s;
 }
-.testimonial_area .owl-carousel .owl-dots .owl-dot.active {
+.owl-carousel .owl-dots .owl-dot.active {
     height: 12px;
     width: 12px;
     background: #6dd5ed;

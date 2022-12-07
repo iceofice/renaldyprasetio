@@ -56,45 +56,20 @@
     });
 
     /*----------------------------------------------------*/
-    /* Start Magnific Pop Up
-	/*----------------------------------------------------*/
-    if ($('.img-gal').length > 0) {
-        $('.img-gal').magnificPopup({
-            type: 'image',
-            gallery: {
-                enabled: true,
-            },
-        });
-    }
-    /*----------------------------------------------------*/
-    /*  End  Magnific Pop Up
-	/*----------------------------------------------------*/
-
-    /*----------------------------------------------------*/
     /*  Testimonials Slider
     /*----------------------------------------------------*/
-    function testimonials_slider() {
-        if ($('.testi_slider').length) {
-            $('.testi_slider').owlCarousel({
-                loop: true,
+    function project_slider() {
+        if ($('.project_slider').length) {
+            $('.project_slider').owlCarousel({
                 margin: 30,
-                items: 2,
+                items: 1,
                 autoplay: true,
-                smartSpeed: 2500,
+                smartSpeed: 500,
                 dots: true,
-                responsiveClass: true,
-                responsive: {
-                    0: {
-                        items: 1,
-                    },
-                    991: {
-                        items: 2,
-                    },
-                },
             });
         }
     }
-    testimonials_slider();
+    project_slider();
 
     /*----------------------------------------------------*/
     /*  Google map js
