@@ -99,6 +99,12 @@
                         position: 'top-right',
                         icon: 'success'
                     });
+                @elseif (\Session::get('error_message'))
+                    $.toast({
+                        text: "{{ \Session::get('error_message') }}",
+                        position: 'top-right',
+                        icon: 'error'
+                    });
                 @endif
 
                 var table = $('#record-table').DataTable({

@@ -26,4 +26,12 @@ class Category extends Model
     public static $rules = [
         'title' => 'required',
     ];
+
+    /**
+     * The projects that belong to the category.
+     */
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class);
+    }
 }

@@ -96,6 +96,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        if ($category->projects->isNotEmpty()) {
+            return redirect()->route('admin.categories.index')
+                ->with('error_message', 'The category has one/more projects!');
+        }
         $category->delete();
 
         return redirect()->route('admin.categories.index')

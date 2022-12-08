@@ -92,7 +92,10 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        $categories = Category::get(['id', 'title']);
+        $technologies = Technology::get(['id', 'name']);
+
+        return view('admin.projects.edit', compact('project', 'categories', 'technologies'));
     }
 
     /**
@@ -104,7 +107,41 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $validated = $request->validate(Project::$rules, Project::$messages);
+        $project->update($validated);
+
+        if (isset($validated['image'])) {
+            $project->images()->delete();
+            foreach ($validated['image'] as $image) {
+                $imageTitle = $image->hashName();
+                $image->move(public_path('uploaded'), $imageTitle);
+
+                $images[] = Image::create([
+                    'url' => 'uploaded/' . $imageTitle,
+                    'project_id' => $project->id
+                ]);
+            }
+            $project->images()->saveMany($images);
+        }
+
+        $project
+            ->categories()
+            ->sync(
+                isset($validated['categories'])
+                    ? $validated['categories']
+                    : []
+            );
+
+        $project
+            ->technologies()
+            ->sync(
+                isset($validated['technologies'])
+                    ? $validated['technologies']
+                    : []
+            );
+
+        return redirect()->route('admin.projects.index')
+            ->with('success_message', 'Project updated successfully');
     }
 
     /**
@@ -115,6 +152,10 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        $project->categories()->detach();
+        $project->technologies()->detach();
+        $project->images()->delete();
+
         $project->delete();
 
         return redirect()->route('admin.projects.index')

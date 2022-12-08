@@ -24,7 +24,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('auth/css/vertical-layout-light/style.css') }}">
     <!-- endinject -->
-    <link rel="shortcut icon" href="{{ asset('auth/images/favicon.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 </head>
 
 <body>
@@ -76,7 +76,6 @@
                     {{ $slot }}
                 </div>
                 <!-- content-wrapper ends -->
-                <x-footer />
             </div>
             <!-- main-panel ends -->
         </div>

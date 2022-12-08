@@ -96,6 +96,11 @@ class TechnologyController extends Controller
      */
     public function destroy(Technology $technology)
     {
+        if ($technology->projects->isNotEmpty()) {
+            return redirect()->route('admin.categories.index')
+                ->with('error_message', 'The technology has one/more projects!');
+        }
+
         $technology->delete();
 
         return redirect()->route('admin.technologies.index')

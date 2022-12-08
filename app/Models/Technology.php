@@ -26,4 +26,12 @@ class Technology extends Model
     public static $rules = [
         'name' => 'required',
     ];
+
+    /**
+     * The projects that belong to the technology.
+     */
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class);
+    }
 }
