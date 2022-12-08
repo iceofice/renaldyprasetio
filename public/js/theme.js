@@ -290,11 +290,10 @@ $(document).ready(function () {
             var offsetTop = $(elem).offset().top;
             var outerHeight = $(this).outerHeight(true);
 
-            if (windowTop > offsetTop - 50 && windowTop < offsetTop + outerHeight) {
+            if (windowTop > offsetTop - 100 && windowTop < offsetTop + outerHeight) {
                 var elemId = $(elem).attr('id');
                 $('.nav-item.active').removeClass('active');
-                console.log(elemId);
-                $(".nav-item a[href='#" + elemId + "']")
+                $(".nav-item a[href='/#" + elemId + "']")
                     .parent()
                     .addClass('active');
             }
