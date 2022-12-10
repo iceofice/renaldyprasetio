@@ -10,9 +10,11 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">
-                            <a href="{{ route('admin.' . $routeName . '.create') }}" class="btn btn-primary mb-4">
-                                Add {{ $modelName }}
-                            </a>
+                            @if (!isset($noCreate))
+                                <a href="{{ route('admin.' . $routeName . '.create') }}" class="btn btn-primary mb-4">
+                                    Add {{ $modelName }}
+                                </a>
+                            @endif
                             <div class="table-responsive">
                                 <table id="record-table" class="display expandable-table" style="width:100%">
                                 </table>

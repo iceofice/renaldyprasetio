@@ -17,14 +17,18 @@
                             </ul>
                         </div>
                     @endif
-                    <form class="forms-sample" action="{{ route('admin.' . $routeName . '.update', $id) }}"
-                        enctype="multipart/form-data" method="POST">
-                        @csrf
-                        @method('PUT')
+                    @isset($id)
+                        <form class="forms-sample" action="{{ route('admin.' . $routeName . '.update', $id) }}"
+                            enctype="multipart/form-data" method="POST">
+                            @csrf
+                            @method('PUT')
+                        @endisset
                         {{ $slot }}
-                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                        <a href="{{ route('admin.' . $routeName . '.index') }}" class="btn btn-light">Cancel</a>
-                    </form>
+                        @isset($id)
+                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                            <a href="{{ route('admin.' . $routeName . '.index') }}" class="btn btn-light">Cancel</a>
+                        </form>
+                    @endisset
                 </div>
             </div>
         </div>

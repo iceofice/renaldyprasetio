@@ -83,25 +83,31 @@
                     </div>
                 </div>
                 <div class="col-lg-9">
-                    <form class="row contact_form" action="contact_process.php" method="post" id="contactForm"
-                        novalidate="novalidate">
+                    @if (\Session::get('success_message'))
+                        <div class="alert alert-success" role="alert">
+                            {{ \Session::get('success_message') }}
+                        </div>
+                    @endif
+                    <form class="row contact_form" action="{{ route('send-message') }}" method="post"
+                        id="contactForm">
+                        @csrf
                         <div class="col-md-6">
                             <div class="form-group">
                                 <input type="text" class="form-control" id="name" name="name"
-                                    placeholder="Enter your name">
+                                    placeholder="Enter your name" required>
                             </div>
                             <div class="form-group">
                                 <input type="email" class="form-control" id="email" name="email"
-                                    placeholder="Enter email address">
+                                    placeholder="Enter email address" required>
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" id="subject" name="subject"
-                                    placeholder="Enter Subject">
+                                    placeholder="Enter Subject" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <textarea class="form-control" name="message" id="message" rows="1" placeholder="Enter Message"></textarea>
+                                <textarea class="form-control" name="message" id="message" rows="1" placeholder="Enter Message" required></textarea>
                             </div>
                         </div>
                         <div class="col-md-12 text-right">
@@ -141,6 +147,7 @@
             </div>
         </div>
     </footer>
+
     <!--================End Footer Area =================-->
 
     <!-- Optional JavaScript -->
@@ -160,6 +167,9 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
     <script src="{{ asset('js/gmaps.min.js') }}"></script>
     <script src="{{ asset('js/theme.js') }}"></script>
+    <script>
+        $('.alert').alert();
+    </script>
 </body>
 
 </html>

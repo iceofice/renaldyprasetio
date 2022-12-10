@@ -24,5 +24,11 @@
                 <span class="menu-title">Technologies</span>
             </a>
         </li>
+        <li @class(['nav-item', 'active' => request()->is('admin/contacts*')])>
+            <a class="nav-link" href="{{ route('admin.contacts.index') }}">
+                <i class="mdi mdi-email-open menu-icon"></i>
+                <span class="menu-title">Contact</span>
+            </a>
+        </li>
     </ul>
 </nav>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\TechnologyController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [FrontController::class, 'home'])->name('home');
+Route::post('/sendMessage', [FrontController::class, 'sendMessage'])->name('send-message');
 Route::get('/project/{project}', [FrontController::class, 'project'])->name('project');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -36,4 +38,7 @@ Route::group([
     Route::resource('/projects', ProjectController::class);
     Route::resource('/categories', CategoryController::class);
     Route::resource('/technologies', TechnologyController::class);
+    Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
+    Route::get('/contacts/{contact}/edit', [ContactController::class, 'edit'])->name('contacts.edit');
+    Route::delete('/contacts/{contact}', [ContactController::class, 'destroy'])->name('contacts.destroy');
 });
