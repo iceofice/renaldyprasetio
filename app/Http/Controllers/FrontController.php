@@ -10,7 +10,7 @@ class FrontController extends Controller
 {
     public function home()
     {
-        $projects = Project::has('images')->with(['technologies', 'images', 'categories'])->get();
+        $projects = Project::has('images')->with(['technologies', 'images', 'categories'])->orderBy('featured', 'desc')->get();
         $categories = Category::pluck('title')
             ->mapWithKeys(fn ($category) => [$category => Str::slug($category)]);
 

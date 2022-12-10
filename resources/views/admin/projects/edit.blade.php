@@ -4,6 +4,13 @@
         <input type="text" class="form-control" placeholder="Title" name="title" id="title"
             value="{{ $project->title }}">
     </div>
+    <div class="form-check form-check-flat form-check-primary">
+        <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" name="featured" id="featured"
+                @if ($project->featured) checked @endif>
+            Featured
+            <i class="input-helper"></i></label>
+    </div>
     <div class="form-group">
         <label for="categories">Categories</label>
         <select name="categories[]" id="categories" class="js-categories-select w-100" multiple>

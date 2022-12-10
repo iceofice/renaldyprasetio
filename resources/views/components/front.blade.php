@@ -68,7 +68,7 @@
                         <div class="info_item">
                             <i class="lnr lnr-home"></i>
                             <h6>Pekanbaru, Indonesia</h6>
-                            <p>Moving quite a lot</p>
+                            <p>Often on the move</p>
                         </div>
                         <div class="info_item">
                             <i class="lnr lnr-phone-handset"></i>
@@ -78,7 +78,7 @@
                         <div class="info_item">
                             <i class="lnr lnr-envelope"></i>
                             <h6><a href="#">prasetiorenaldy@gmail.com</a></h6>
-                            <p>Don't be shy to send me anything</p>
+                            <p>Ask away. I'm ready to help.</p>
                         </div>
                     </div>
                 </div>
@@ -129,10 +129,12 @@
                             <h4>Follow Me</h4>
                         </div>
                         <div class="footer_social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-dribbble"></i></a>
-                            <a href="#"><i class="fa fa-behance"></i></a>
+                            <a href="https://www.instagram.com/renaldyprasetio/" target="_blank">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/renaldy-prasetio/" target="_blank">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
                         </div>
                     </div>
                 </div>

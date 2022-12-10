@@ -25,7 +25,8 @@
                         {{ $project->categories->map(fn($category) => $categories[$category->title])->implode('title', ' ') }}">
                         <div class="portfolio_box">
                             <div class="single_portfolio">
-                                <img class="img-fluid w-100" src="{{ asset($project->images[0]->url) }}" alt="">
+                                <img class="img-fluid w-100 project" src="{{ asset($project->images[0]->url) }}"
+                                    alt="">
                                 <div class="overlay"></div>
                                 <a href="{{ route('project', $project) }}" class="img-gal">
                                     <div class="icon">

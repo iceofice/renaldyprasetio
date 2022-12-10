@@ -26,8 +26,9 @@
                         Laravel
                     </li>
                 </ul>
-
-
+                <div class="mt-4">
+                    <div class="badge badge-info badge-pill">Pill</div>
+                </div>
             </div>
         </div>
     </section>

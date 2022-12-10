@@ -3291,6 +3291,10 @@ h6 {
 .single_portfolio {
     position: relative;
 }
+.single_portfolio img {
+    aspect-ratio: 1;
+    object-fit: cover;
+}
 .single_portfolio .overlay {
     -webkit-transition: all 0.4s ease 0s;
     -moz-transition: all 0.4s ease 0s;

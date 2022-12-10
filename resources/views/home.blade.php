@@ -10,8 +10,9 @@
                             <h1>I am <span class="name">Renaldy Prasetio</h1>
                             <h5>Web Developer | Android Developer</h5>
                             <div class="d-flex align-items-center">
-                                <a class="primary_btn" href="#"><span>Hire Me</span></a>
-                                <a class="primary_btn tr-bg" href="#"><span>Get CV</span></a>
+                                <a class="primary_btn" href="#contact"><span>Contact Me</span></a>
+                                <a class="primary_btn tr-bg" target="_blank"
+                                    href="{{ asset('documents/Renaldy-Prasetio-CV.pdf') }}"><span>View CV</span></a>
                             </div>
                         </div>
                     </div>
@@ -42,15 +43,17 @@
                             Introduce <br>
                             myself</h2>
                         <p>
-                            Hi! I am Renaldy Prasetio a fresh Computer Science graduate. At the start of 2021, I started
-                            my developer journey by joining PT. Anugerah Mentari Bersinar as a Junior Developer.
+                            Hello, my name is Renaldy Prasetio. I recently graduated with a degree in Computer Science
+                            and began my career as a Junior Developer at PT. Anugerah Mentari Bersinar.
                         </p>
                         <p>
-                            I mostly familiar with Laravel Framework, VueJS and Flutter as my main programming
-                            technologies. I have join numerous of projects and start my own projects to hone my skill in
-                            this technology era.
+                            I am familiar with a number of programming technologies, including Laravel Framework, VueJS,
+                            and Flutter, and I am dedicated to continuing to learn and improve my skills in this
+                            rapidly-evolving field.
                         </p>
-                        <a class="primary_btn" href="#"><span>Download CV</span></a>
+                        <a class="primary_btn" target="_blank" href="{{ asset('documents/Renaldy-Prasetio-CV.pdf') }}">
+                            <span>View CV</span>
+                        </a>
                     </div>
                 </div>
             </div>

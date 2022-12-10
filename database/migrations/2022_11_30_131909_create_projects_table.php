@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('about');
+            $table->dateTime('featured')->nullable();
             $table->text('contributions');
             $table->timestamps();
         });

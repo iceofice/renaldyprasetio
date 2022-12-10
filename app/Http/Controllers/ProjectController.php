@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Image;
 use App\Models\Project;
 use App\Models\Technology;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
@@ -33,6 +34,11 @@ class ProjectController extends Controller
                 'title' => 'Title',
                 'data'  => 'title'
             ],
+            [
+                'title' => 'Featured',
+                'data'  => 'featured',
+                'defaultContent' => '-'
+            ],
         ];
         return view('admin.projects.index', compact('projects', 'columns'));
     }
@@ -58,6 +64,10 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate(Project::$rules, Project::$messages);
+
+        $validated['featured'] = isset($request['featured'])
+            ? Carbon::now()
+            : null;
 
         $project = Project::create($validated);
 
@@ -108,6 +118,11 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project)
     {
         $validated = $request->validate(Project::$rules, Project::$messages);
+
+        $validated['featured'] = isset($request['featured'])
+            ? Carbon::now()
+            : null;
+
         $project->update($validated);
 
         if (isset($validated['image'])) {
