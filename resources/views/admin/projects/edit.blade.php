@@ -119,12 +119,14 @@
                 //WYSISYG Editor
                 tinymce.init({
                     selector: 'textarea#contributions', // Replace this CSS selector to match the placeholder element for TinyMCE
-                    plugins: 'code',
+                    plugins: 'advlist code link lists',
+                    toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code',
                     height: 200,
                 });
                 tinymce.init({
                     selector: 'textarea#about', // Replace this CSS selector to match the placeholder element for TinyMCE
-                    plugins: 'code',
+                    plugins: 'advlist code link lists',
+                    toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code',
                     height: 200,
                 });
             })(jQuery);

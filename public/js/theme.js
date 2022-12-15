@@ -66,6 +66,7 @@
                 autoplay: true,
                 smartSpeed: 500,
                 dots: true,
+                loop: true,
             });
         }
     }

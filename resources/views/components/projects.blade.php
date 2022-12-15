@@ -21,8 +21,7 @@
             <div class="row portfolio-grid justify-content-center">
                 @foreach ($projects as $project)
                     <div
-                        class="col-lg-4 col-md-6 all 
-                        {{ $project->categories->map(fn($category) => $categories[$category->title])->implode('title', ' ') }}">
+                        class="col-lg-4 col-md-6 all {{ $project->categories->map(fn($category) => $categories[$category->title])->implode(' ') }}">
                         <div class="portfolio_box">
                             <div class="single_portfolio">
                                 <img class="img-fluid w-100 project" src="{{ asset($project->images[0]->url) }}"
@@ -35,8 +34,8 @@
                                 </a>
                             </div>
                             <div class="short_info">
-                                <h4><a href="portfolio-details.html">{{ $project->title }}</a></h4>
-                                <p>{{ $project->technologies->implode('name', ',') }}</p>
+                                <h4><a href="{{ route('project', $project) }}">{{ $project->title }}</a></h4>
+                                <p>{{ $project->technologies->implode('name', ', ') }}</p>
                             </div>
                         </div>
                     </div>
